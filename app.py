@@ -6,11 +6,10 @@ def parse_markdown(md_text):
     html_output = []
     paragraphs = md_text.split('\n\n')
 
-    bold_pattern = re.compile(r'(?<=\s|^)\*\*(.*?)\*\*(?=\s|$)')
-    italic_pattern = re.compile(r'(?<=\s|^)_(.*?)_(?=\s|$)')
-    monospaced_pattern = re.compile(r'(?<=\s|^)`(.*?)`(?=\s|$)')
-    preformatted_pattern = re.compile(r'^```(.*?)```$', re.DOTALL)
-
+    bold_pattern = re.compile(r'\*\*(.*?)\*\*')
+    italic_pattern = re.compile(r'_(.*?)_')
+    monospaced_pattern = re.compile(r'`(.*?)`')
+    preformatted_pattern = re.compile(r'```(.*?)```', re.DOTALL)
     for paragraph in paragraphs:
         if preformatted_pattern.match(paragraph):
             preformatted_text = preformatted_pattern.findall(paragraph)[0]
